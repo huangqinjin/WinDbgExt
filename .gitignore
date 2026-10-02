@@ -1,0 +1,6 @@
+cmake-build-*/
+CMakeUserPresets.json
+/uv.lock
+.venv/
+__pycache__/
+.pytest_cache/

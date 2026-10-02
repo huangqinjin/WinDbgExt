@@ -1,0 +1,9 @@
+target: hello.exe
+events:
+  initial_breakpoint: break
+steps:
+  - run: |
+      g
+    output: |
+      Hello Debugger!
+      \([[:xdigit:]]+\.[[:xdigit:]]+\): Break instruction exception - code 80000003 \(first chance\)

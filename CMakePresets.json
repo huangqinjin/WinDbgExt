@@ -1,0 +1,55 @@
+{
+  "version": 10,
+  "cmakeMinimumRequired": {
+    "major": 4,
+    "minor": 4,
+    "patch": 1
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/cmake-build-${presetName}",
+      "cacheVariables": {
+        "CMAKE_CONFIGURATION_TYPES": "RelWithDebInfo;Debug"
+      },
+      "environment": {
+        "CC": "cl",
+        "CXX": "cl",
+        "VIRTUAL_ENV": "${sourceDir}/.venv",
+        "PYTHONPATH": "${sourceDir}${pathListSep}$penv{PYTHONPATH}"
+      }
+    },
+    {
+      "name": "clang-cl",
+      "inherits": "default",
+      "environment": {
+        "CC": "clang-cl",
+        "CXX": "clang-cl"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default"
+    },
+    {
+      "name": "clang-cl",
+      "configurePreset": "clang-cl",
+      "inherits": "default"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default",
+      "configuration": "RelWithDebInfo"
+    },
+    {
+      "name": "clang-cl",
+      "configurePreset": "clang-cl",
+      "inherits": "default"
+    }
+  ]
+}

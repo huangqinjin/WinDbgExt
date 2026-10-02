@@ -1,0 +1,22 @@
+[project]
+name = "windbgext"
+version = "0.1.0"
+description = "Automated CDB debugger tests driven by YAML specs"
+requires-python = ">=3.14"
+dependencies = [
+    "loguru",
+    "pytest",
+    "pyyaml",
+    "regex",
+]
+
+# t-string support (Python 3.14 `string.templatelib`) is not in a PyPI release yet,
+# so loguru is taken from main at the commit that added it.
+[tool.uv.sources]
+loguru = { git = "https://github.com/Delgan/loguru.git", rev = "0412a60d6aff63a4ed009c7445993b42d294c2f1" }
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = [
+    "test/cdb"
+]
