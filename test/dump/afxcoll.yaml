@@ -1,0 +1,21 @@
+target: afxcoll.exe
+steps:
+  - run: |
+      .scriptload "${ext}afxcoll.js"
+    output: |
+      JavaScript script successfully loaded from '.*afxcoll.js'
+  - run: |
+      dx @$scriptContents.dumpCString("NarrowStringInstance")
+    output: |
+      A Narrow String Instance
+  - run: |
+      dx @$scriptContents.dumpCString("WideStringInstance")
+    output: |
+      A Wide String Instance
+  - run: |
+      dx @$scriptContents.dumpCStringArray("StringArrayInstance")
+    output: |
+      A
+      String
+      Array
+      Instance
