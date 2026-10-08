@@ -6,6 +6,7 @@ requires-python = ">=3.14"
 dependencies = [
     "loguru",
     "pytest",
+    "pywin32",
     "pyyaml",
     "regex",
 ]

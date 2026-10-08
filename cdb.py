@@ -14,6 +14,7 @@ import string
 import subprocess
 import sys
 import time
+import win32file
 import yaml
 
 
@@ -80,8 +81,17 @@ class Spec:
 
         self.where = ""
         self.mapping = mapping
-        self.debugger = self._str(data, "debugger", "cdbX64")
+
         self.target = self._str(data, "target")
+        self.is_64bit = True
+
+        try:
+            if win32file.GetBinaryType(self.target) == 0:
+                self.is_64bit = False
+        except:
+            pass
+
+        self.debugger = self._str(data, "debugger", "cdbX64" if self.is_64bit else "cdbX86")
         self.attach = self._bool(data, "attach", False)
         self.detach = self._bool(data, "detach", False)
 
